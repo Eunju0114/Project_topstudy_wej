@@ -1,5 +1,7 @@
 package com.wej.exam.demo.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -58,6 +60,44 @@ public class UsrMemberController {
 		Member member = memberService.getMemberById(id);
 
 		return member;
+	}
+	
+	@RequestMapping("/usr/member/doLogin")
+	@ResponseBody
+	public Object doLogin(HttpSession httpsession, String loginId, String loginPw) {
+		
+		boolean isLogined = false;
+		
+		if(httpsession.getAttribute("loginedMemberId") != null) {
+			isLogined = true;
+		}
+		
+		if(isLogined) {
+			return "이미 로그인되었습니다.";
+		}
+		
+
+		if ( Ut.empty(loginId) ) {
+			return "loginId(을)를 입력해주세요.";
+		}
+		
+		if ( Ut.empty(loginPw) ) {
+			return "loginPw(을)를 입력해주세요.";
+		}
+		
+		Member member = memberService.getMemberByLoginId(loginId);
+		
+		if(member == null ) {
+			return "존재하지 않은 로그인 아이디입니다.";
+		}
+		
+		if(member.getLoginPw().equals(loginPw) == false) {
+			return "비밀번호가 일치하지 않습니다.";
+		}
+		
+		httpsession.setAttribute("loginedMemberId", member.getId());
+		
+		return Ut.f("%s님 환영합니다.", member.getNickname());
 	}
 
 }
