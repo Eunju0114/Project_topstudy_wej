@@ -52,7 +52,7 @@ public class UsrMemberController {
 		if (id == -1) {
 			return Ut.f("해당 로그인아이디(%s)는 이미 사용중입니다.", loginId);
 		}
-		
+
 		if (id == -2) {
 			return Ut.f("해당 이름(%s)과 이메일(%s)은 이미 사용중입니다.", name, email);
 		}
@@ -61,43 +61,61 @@ public class UsrMemberController {
 
 		return member;
 	}
-	
+
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
-	public Object doLogin(HttpSession httpsession, String loginId, String loginPw) {
-		
+	public Object doLogin(HttpSession httpSession, String loginId, String loginPw) {
+
 		boolean isLogined = false;
-		
-		if(httpsession.getAttribute("loginedMemberId") != null) {
+
+		if (httpSession.getAttribute("loginedMemberId") != null) {
 			isLogined = true;
 		}
-		
-		if(isLogined) {
+
+		if (isLogined) {
 			return "이미 로그인되었습니다.";
 		}
-		
 
-		if ( Ut.empty(loginId) ) {
+		if (Ut.empty(loginId)) {
 			return "loginId(을)를 입력해주세요.";
 		}
-		
-		if ( Ut.empty(loginPw) ) {
+
+		if (Ut.empty(loginPw)) {
 			return "loginPw(을)를 입력해주세요.";
 		}
-		
+
 		Member member = memberService.getMemberByLoginId(loginId);
-		
-		if(member == null ) {
+
+		if (member == null) {
 			return "존재하지 않은 로그인 아이디입니다.";
 		}
-		
-		if(member.getLoginPw().equals(loginPw) == false) {
+
+		if (member.getLoginPw().equals(loginPw) == false) {
 			return "비밀번호가 일치하지 않습니다.";
 		}
-		
-		httpsession.setAttribute("loginedMemberId", member.getId());
-		
+
+		httpSession.setAttribute("loginedMemberId", member.getId());
+
 		return Ut.f("%s님 환영합니다.", member.getNickname());
 	}
 
+	@RequestMapping("/usr/member/doLogout")
+	@ResponseBody
+	public Object doLogout(HttpSession httpSession) {
+
+		boolean isLogined = false;
+
+		if (httpSession.getAttribute("loginedMemberId") == null) {
+			isLogined = true;
+		}
+
+		if (isLogined) {
+			return "이미 로그아웃 상태입니다.";
+		}
+		
+		httpSession.removeAttribute("loginedMemberId");
+
+		return "로그아웃 되었습니다.";
+
+	}
 }
