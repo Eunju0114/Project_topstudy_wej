@@ -84,4 +84,12 @@ nickname = "사용자2",
 cellphoneNo = "01011112222",
 email = "test2@gmail.com";
 
-SELECT * FROM `member`; 
+SELECT * FROM `member`;
+
+ALTER TABLE article ADD COLUMN memberId INT(10) UNSIGNED NOT NULL AFTER `updateDate`;
+
+UPDATE article
+SET memberId = 2
+WHERE memberId = 0;
+
+SELECT * FROM article;
