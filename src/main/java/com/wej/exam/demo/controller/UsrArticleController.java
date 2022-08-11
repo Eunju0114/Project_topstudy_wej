@@ -2,12 +2,15 @@ package com.wej.exam.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wej.exam.demo.service.ArticleService;
+import com.wej.exam.demo.utill.Ut;
 import com.wej.exam.demo.vo.Article;
 
 @Controller
@@ -18,9 +21,28 @@ public class UsrArticleController {
 
 	@RequestMapping("usr/article/doAdd")
 	@ResponseBody
-	public Article doAdd(String title, String body) {
+	public Object doAdd(HttpSession httpSession, String title, String body) {
+		boolean isLogined = false;
+		int loginedMemberId = 0;
 
-		int id = articleService.writeArticle(title, body);
+		if ( httpSession.getAttribute("loginedMemberId") != null ) {
+			isLogined = true;
+			loginedMemberId = (int) httpSession.getAttribute("loginedMemberId");
+		}
+
+		if ( isLogined == false ) {
+			return "로그인 후 이용해주세요.";
+		}
+		
+		if ( Ut.empty(title) ) {
+			return "title(을)를 입력해주세요.";
+		}
+		
+		if ( Ut.empty(body) ) {
+			return "body(을)를 입력해주세요.";
+		}
+		
+		int id = articleService.writeArticle(loginedMemberId, title, body);
 		
 		Article article = articleService.getArticle(id);
 		
