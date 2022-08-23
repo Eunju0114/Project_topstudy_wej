@@ -36,7 +36,6 @@ img, viedo{
 .hr3 {
     border: 0;
     height: 3px;
-    width:2000px;
     background: #4682B4;
   }
 
@@ -88,6 +87,26 @@ img, viedo{
   background-color:white;
 }
 
+
+/*슬라이더*/
+.slider-box-1 {
+  overflow:hidden;
+}
+
+.slider-box-1 > .slides{
+  transition: margin 0.3s;
+}
+.slider-box-1[data-index="0"] > .slides{
+  margin-top:0;
+}
+
+.slider-box-1[data-index="1"] > .slides{
+  margin-top:-320px;
+}
+
+.slider-box-1[data-index="0"] > .slides{
+  margin-top:-640px;
+}
 
 
 

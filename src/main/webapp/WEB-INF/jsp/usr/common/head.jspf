@@ -20,6 +20,7 @@
 <link rel="stylesheet" href="/resource/common.css" />
 <!-- 사이트 공통 JS -->
 <script src="resource/common.js" defer="defer"></script>
+<script src="/resource/script.js" defer="defer"></script>
 </head>
 <hr class="hr3">
 
