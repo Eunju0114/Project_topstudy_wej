@@ -32,7 +32,7 @@
       </a>
     </div>
 
-    <nav class="menu-1 self-center text-center font-bold">
+    <nav class="menu-1 self-center text-center font-bold text-lg">
       <ul class="flex">
         <li>
           <a href="#">학원안내</a>

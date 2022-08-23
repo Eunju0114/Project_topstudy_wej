@@ -1,6 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-   </main>
-  </body>
-</html> 
+</main>
+</body>
+
+<footer class="bottom-bar">
+
+<hr class="hr3 mt-1">
+  <div class="con mx-auto h-28 flex items-center" style="color: gray; font-size: 0.75rem;">
+    <div class="flex-1">
+      <div class="text-center">
+        <div>탑스터디컴퓨터학원 | 원장:왕충헌 | 등록번호:401-90-91272 | 학원설립,운영등록:군산교육청 제1766호</div>
+        <div>군산시 수송로 119, 3층(나운동, 은하빌딩) | ☎)063)468-8832 | Fax. 063) 468-8831</div>
+      </div>
+      <div class="text-center">Copyright all rights reserved.</div>
+    </div>
+
+  </div>
+  
+  
+</footer>
+
+</html>
