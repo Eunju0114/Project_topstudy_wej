@@ -5,7 +5,7 @@
 
 
 <section class="section-sliders mt-1">
-  <div class="con">
+  <div class="con px-3">
     <div class="slider-box-1 h-80" data-index="0">
       <div class="slides">
         <div><img src="/resource/img/top/banner1.jpg" alt="슬라이더1" style="width: 1500px; height:320px; object-fit:cover;"></div>

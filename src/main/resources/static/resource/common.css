@@ -44,48 +44,66 @@ img, viedo{
   margin-left:auto;
   margin-right:auto;
 }
-.menu-1 ul > li > a{
-  width:200px;
+
+
+.menu-1 > ul > li {
+  position:relative;
+}
+
+.menu-1 > ul > li > ul {
+  position:absolute;
+  left:0;
+  width:100%;
+  overflow:hidden;
+  height:0;
+  visibility:hidden;
+  transition:height .3s, visibility .3s;
+  background-color:white;
+}
+
+.menu-1 > ul > li:first-child > ul {
+  border-radius:0 0 0 10px;
+}
+
+.menu-1 > ul > li:last-child > ul {
+  border-radius:0 0 10px 0;
+}
+
+.menu-1 > ul:hover > li > ul {
+  height:200px;
+  visibility:visible;
+}
+
+.menu-1 ul > li > a {
   display:block;
   padding:10px 0;
 }
 
-.menu-1 ul > li:hover > a{
-  background-color:#dfdfdf;
-  border-radius:10px;
+.menu-1 ul > li:hover > a,
+.menu-1 ul > li > a:focus {
   text-decoration:underline;
+  color:red;
+  outline:0;
 }
 
-.menu-1 > ul > li{
+.menu-1 > ul > li > a {
+  width:200px;
+}
+
+.menu-1 > ul > li:not(:last-child) > a {
   position:relative;
 }
 
-.menu-1 > ul > li:not(:last-child) > a::after{
+.menu-1 > ul > li:not(:last-child) > a::after {
   content:"";
-  position:absolute;
-  width:1px;
-  height:10px;
-  top:calc(50% - 5px);
-  right:0;
   background-color:currentcolor;
-}
-
-.menu-1 > ul > li > ul{
-  height:0;
-  overflow:hidden;
   position:absolute;
-  top:100%;
-  left:0;
-  transition: height 0.3s;
+  width:2px;
+  top:calc(50% - 5px);
+  height:10px;
+  right:0;
 }
 
-.menu-1 > ul:hover > li > ul{
-  height:200px;
-}
-
-.menu-1 > ul > li > ul {
-  background-color:white;
-}
 
 
 /*슬라이더*/
@@ -108,6 +126,16 @@ img, viedo{
   margin-top:-640px;
 }
 
+/*리스트*/
+.table-box-type-1 > table {
+	width: 100%;
+}
+
+.table-box-type-1 > table th,
+.table-box-type-1 > table td {
+	border: 1px solid black;
+	padding: 10px;
+} 
 
 
 

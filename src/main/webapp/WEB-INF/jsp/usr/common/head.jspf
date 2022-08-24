@@ -27,7 +27,7 @@
 <header class="top-bar">
   <div class="con flex h-28">
     <div class="logo mr-auto self-center">
-      <a href="#">
+      <a href="/usr/home/main">
         <img src="/resource/img/top/logo.gif" alt="로고1">
       </a>
     </div>
@@ -86,7 +86,7 @@
           <a href="#">커뮤니티</a>
           <ul>
             <li>
-              <a href="#">게시판</a>
+              <a href="/usr/article/list">게시판</a>
             </li>
             <li>
               <a href="#">문의사항</a>

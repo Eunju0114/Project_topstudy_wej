@@ -14,14 +14,21 @@
 	</insert>
 
 	<select id="getArticle" resultType="Article">
-		select *
-		from article
-		where id = #{id}
+		select A.*,
+		M.nickname AS extra_writerName
+		from article AS A
+		LEFT JOIN member AS M
+		on A.memberId = M.id
+		WHERE 1
+		AND A.id = #{id}
 	</select>
 
 	<select id="getArticles" resultType="Article">
-		select *
-		from article
+		select A.*,
+		M.nickname AS extra_writerName
+		from article AS A
+		LEFT JOIN member AS M
+		on A.memberId = M.id
 		order by
 		id DESC
 	</select>
