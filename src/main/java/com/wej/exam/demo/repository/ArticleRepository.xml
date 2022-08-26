@@ -13,7 +13,7 @@
 		`body`=#{body}
 	</insert>
 
-	<select id="getArticle" resultType="Article">
+	<select id="getForPrintArticle" resultType="Article">
 		select A.*,
 		M.nickname AS extra_writerName
 		from article AS A
@@ -23,7 +23,7 @@
 		AND A.id = #{id}
 	</select>
 
-	<select id="getArticles" resultType="Article">
+	<select id="getForPrintArticles" resultType="Article">
 		select A.*,
 		M.nickname AS extra_writerName
 		from article AS A
