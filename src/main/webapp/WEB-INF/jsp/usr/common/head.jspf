@@ -97,7 +97,12 @@
           </ul>
         </li>
         <li>
-          <a href="#">로그인</a>
+          <c:if test="${!rq.isLogined()}">
+            <a href="/usr/member/login" class="h-full flex items-center px-3 hover:underline"> 로그인 </a>
+          </c:if>
+          <c:if test="${rq.isLogined()}">
+            <a href="/usr/member/doLogout" class="h-full flex items-center px-3 hover:underline"> 로그아웃 </a>
+          </c:if>
           <ul>
             <li>
               <a href="#">회원가입</a>
