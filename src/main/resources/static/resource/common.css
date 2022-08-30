@@ -33,14 +33,23 @@ img, viedo{
 
 
 /*커스텀*/
+
+:root {
+  --site-width:1200px;
+}
+
+.con {
+  width: var(--site-width);
+}
+
 .hr3 {
     border: 0;
     height: 3px;
+    min-width:var(--site-width);
     background: #4682B4;
   }
 
 .con{
-  width:1500px;
   margin-left:auto;
   margin-right:auto;
 }
@@ -87,14 +96,14 @@ img, viedo{
 }
 
 .menu-1 > ul > li > a {
-  width:200px;
+  width:180px;
 }
 
 .menu-1 > ul > li:not(:last-child) > a {
   position:relative;
 }
 
-.menu-1 > ul > li:not(:last-child) > a::after {
+.menu-1 > ul > li:not(:last-child) > a::after{
   content:"";
   background-color:currentcolor;
   position:absolute;
@@ -119,11 +128,11 @@ img, viedo{
 }
 
 .slider-box-1[data-index="1"] > .slides{
-  margin-top:-320px;
+  margin-top:-288px;
 }
 
-.slider-box-1[data-index="0"] > .slides{
-  margin-top:-640px;
+.slider-box-1[data-index="2"] > .slides{
+  margin-top:-576px;
 }
 
 /*리스트*/
@@ -141,6 +150,18 @@ img, viedo{
 	text-decoration: underline;
 	color: red;
 }
+
+.about-box__head{
+	font-weight:bold;
+	font-size:1.5rem;
+	color: #FF6347;
+}
+
+.about-box__body{
+	font-weight:bold;
+	color:	#6495ED;
+} 
+
 
 
 

@@ -3,7 +3,7 @@
 <c:set var="pageTitle" value="게시물 리스트" />
 <%@ include file="../common/head.jspf"%>
 
-<section class="mt-5">
+<section class="mt-2">
   <div class="con px-3">
     <div class="table-box-type-1">
       <table>

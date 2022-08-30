@@ -25,7 +25,7 @@
 <script src="resource/common.js" defer="defer"></script>
 <script src="/resource/script.js" defer="defer"></script>
 </head>
-<hr class="hr3">
+<hr class="hr3 w-full">
 
 <header class="top-bar">
   <div class="con flex h-28">
@@ -58,7 +58,7 @@
           <a href="#">학생/일반과정</a>
           <ul>
             <li>
-              <a href="#">컴퓨터활용능력 1, 2급</a>
+              <a href="#">컴퓨터활용능력</a>
             </li>
             <li>
               <a href="#">사무자동화산업기사</a>

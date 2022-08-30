@@ -6,7 +6,7 @@
 
 <footer class="bottom-bar">
 
-<hr class="hr3 mt-1">
+<hr class="hr3 mt-2">
   <div class="con mx-auto h-28 flex items-center" style="color: gray; font-size: 0.85rem;">
     <div class="flex-1">
       <div class="text-center">
