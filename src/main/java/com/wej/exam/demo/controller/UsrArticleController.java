@@ -28,7 +28,6 @@ public class UsrArticleController {
 
 		Rq rq = (Rq) req.getAttribute("rq");
 
-
 		if (Ut.empty(title)) {
 			return ResultData.from("F-1", "title(을)를 입력해주세요.");
 		}
@@ -87,7 +86,6 @@ public class UsrArticleController {
 
 		Rq rq = (Rq) req.getAttribute("rq");
 
-
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		if (article == null) {
@@ -103,13 +101,33 @@ public class UsrArticleController {
 		return Ut.jsReplace(Ut.f("%d번 게시물을 삭제하였습니다.", id), "../article/list");
 	}
 
+	@RequestMapping("/usr/article/modify")
+	public String showModify(HttpServletRequest req, Model model, int id) {
+		Rq rq = (Rq) req.getAttribute("rq");
+
+		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
+
+		if (article == null) {
+			return rq.historyBackJsOnView(Ut.f("%d번 게시물이 존재하지 않습니다.", id));
+		}
+
+		ResultData actorCanModifyRd = articleService.actorCanModify(rq.getLoginedMemberId(), article);
+
+		if (actorCanModifyRd.isFail()) {
+			return rq.historyBackJsOnView(actorCanModifyRd.getMsg());
+		}
+
+		model.addAttribute("article", article);
+
+		return "usr/article/modify";
+	}
+
 	@RequestMapping("/usr/article/doModify")
 	@ResponseBody
-	public ResultData<Article> doModify(HttpServletRequest req, int id, String title, String body) {
+	public String doModify(HttpServletRequest req, int id, String title, String body) {
 
 		Rq rq = (Rq) req.getAttribute("rq");
 
-		
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		if (article == null) {
@@ -119,9 +137,11 @@ public class UsrArticleController {
 		ResultData actorCanModifyRd = articleService.actorCanModify(rq.getLoginedMemberId(), article);
 
 		if (actorCanModifyRd.isFail()) {
-			return actorCanModifyRd;
+			return Ut.jsHistoryBack(actorCanModifyRd.getMsg());
 		}
 
-		return articleService.modifyArticle(id, title, body);
+		articleService.modifyArticle(id, title, body);
+
+		return Ut.jsReplace(Ut.f("%d번 글이 수정되었습니다.", id), Ut.f("../article/detail?id=%d", id));
 	}
 }
