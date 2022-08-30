@@ -28,9 +28,6 @@ public class UsrArticleController {
 
 		Rq rq = (Rq) req.getAttribute("rq");
 
-		if (rq.isLogined() == false) {
-			return ResultData.from("F-A", "로그인 후 이용해주세요.");
-		}
 
 		if (Ut.empty(title)) {
 			return ResultData.from("F-1", "title(을)를 입력해주세요.");
@@ -62,7 +59,7 @@ public class UsrArticleController {
 	@RequestMapping("/usr/article/getArticle")
 	@ResponseBody
 	public ResultData<Article> getArticle(HttpServletRequest req, int id) {
-		Rq rq = new Rq(req);
+		Rq rq = (Rq) req.getAttribute("rq");
 
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
@@ -90,9 +87,6 @@ public class UsrArticleController {
 
 		Rq rq = (Rq) req.getAttribute("rq");
 
-		if (rq.isLogined() == false) {
-			return Ut.jsHistoryBack("로그인 후 이용해주세요.");
-		}
 
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
@@ -115,10 +109,7 @@ public class UsrArticleController {
 
 		Rq rq = (Rq) req.getAttribute("rq");
 
-		if (rq.isLogined() == false) {
-			return ResultData.from("F-A", "로그인 후 이용해주세요.");
-		}
-
+		
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		if (article == null) {
