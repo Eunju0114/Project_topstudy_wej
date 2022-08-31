@@ -25,21 +25,87 @@
 
 <section class="section-middle mt-2">
   <div class="con flex gap-7 h-60">
-    <div class="flex-1 min-w-0 b"></div>
-    <div class="flex-1 min-w-0 b"></div>
+    <div class="flex-1 min-w-0">
+      <div class="notice-box notice-box-1 flex flex-col h-full">
+        <div class="notice-box__head notice-box-1__head flex-shrink-0 flex">
+          <ul>
+            <li>
+              <a href="#" class="block p-5">공지사항</a>
+            </li>
+          </ul>
+        </div>
+        <div class="notice-box__body notice-box-1__body flex-grow">
+          <div class="notice-list">
+            <ul class="h-full">
+              <li>
+                <a href="#">공지사항1</a>
+              </li>
+              <li>
+                <a href="#">공지사항2</a>
+              </li>
+              <li>
+                <a href="#">공지사항3</a>
+              </li>
+              <li>
+                <a href="#">공지사항4</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="notice-box notice-box-2 flex flex-col h-full">
+        <div class="notice-box__head notice-box-2__head flex-shrink-0 flex">
+          <ul>
+            <li>
+              <a href="#" class="block p-5">게시판</a>
+            </li>
+          </ul>
+        </div>
+        <div class="notice-box__body notice-box-2__body flex-grow">
+          <div class="notice-list">
+            <ul class="h-full">
+              <li>
+                <a href="#">게시판1</a>
+              </li>
+              <li>
+                <a href="#">게시판2</a>
+              </li>
+              <li>
+                <a href="#">게시판3</a>
+              </li>
+              <li>
+                <a href="#">게시판4</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
     <div class="flex-1 min-w-0 flex flex-col">
       <div class="about-box flex-1 flex items-center">
         <div class="about-box__img">
-          <img src="/resource/img/top/aboutUs.jpg" alt="about us" style="width:100px; height:100px; object-fit:cover;">
+          <img src="/resource/img/top/aboutUs.jpg" alt="about us"
+            style="width: 100px; height: 100px; object-fit: cover;">
         </div>
         <div class="about-box-1 flex flex-col flex-1">
           <div class="about-box__head">About Us</div>
-        <div class="about-box__body flex-1 flex text-center">
-          <div class="flex-1"><a href="#">탑스터디</a></div>
-          <div class="flex-1"><a href="#">History</a></div>
-          <div class="flex-1"><a href="#">시설</a></div>
-          <div class="flex-1"><a href="#">오시는 길</a></div>
-        </div>
+          <div class="about-box__body flex-1 flex text-center">
+            <div class="flex-1">
+              <a href="#">탑스터디</a>
+            </div>
+            <div class="flex-1">
+              <a href="#">History</a>
+            </div>
+            <div class="flex-1">
+              <a href="#">시설</a>
+            </div>
+            <div class="flex-1">
+              <a href="#">오시는 길</a>
+            </div>
+          </div>
         </div>
       </div>
       <div class="number-img grid justify-items-center">
