@@ -22,4 +22,6 @@ public interface ArticleRepository {
 
 	public int getLastInsertId();
 
+	public int getArticlesCount(@Param("boardId") int boardId);
+
 }

@@ -91,4 +91,8 @@ public class ArticleService {
 
 		return ResultData.from("S-1", "게시물 수정이 가능합니다.");
 	}
+
+	public int getArticlesCount(int boardId) {
+		return articleRepository.getArticlesCount(boardId);
+	}
 }

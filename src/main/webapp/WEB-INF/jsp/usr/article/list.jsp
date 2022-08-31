@@ -5,7 +5,8 @@
 
 <section class="mt-2">
   <div class="con px-3">
-    <div class="table-box-type-1">
+    <div>게시물 개수 : ${articlesCount}개</div>
+    <div class="table-box-type-1 mt-2">
       <table>
         <colgroup>
           <col width="70" />
