@@ -29,6 +29,10 @@
 		from article AS A
 		LEFT JOIN member AS M
 		on A.memberId = M.id
+		WHERE 1
+			<if test="boardId != 0">
+				AND A.boardId = #{boardId}
+			</if>
 		order by
 		id DESC
 	</select>

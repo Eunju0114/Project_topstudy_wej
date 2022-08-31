@@ -101,7 +101,7 @@ CREATE TABLE board (
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
-    `code` CHAR(50) NOT NULL UNIQUE COMMENT 'notice(공지사항), free1(게시판1)',
+    `code` CHAR(50) NOT NULL UNIQUE COMMENT 'notice(공지사항), free1(자유게시판1)',
     `name` CHAR(50) NOT NULL UNIQUE COMMENT '게시판 이름',
     delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제여부(0=탈퇴전, 1=탈퇴)',
     delDate DATETIME COMMENT '삭제날짜'

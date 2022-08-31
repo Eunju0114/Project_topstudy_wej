@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wej.exam.demo.service.ArticleService;
+import com.wej.exam.demo.service.BoardService;
 import com.wej.exam.demo.utill.Ut;
 import com.wej.exam.demo.vo.Article;
+import com.wej.exam.demo.vo.Board;
 import com.wej.exam.demo.vo.ResultData;
 import com.wej.exam.demo.vo.Rq;
 
@@ -21,6 +23,12 @@ public class UsrArticleController {
 
 	@Autowired
 	private ArticleService articleService;
+	private BoardService boardService;
+
+	public UsrArticleController(ArticleService articleService, BoardService boardService) {
+		this.articleService = articleService;
+		this.boardService = boardService;
+	}
 
 	@RequestMapping("/usr/article/write")
 	public String showWrite(HttpServletRequest req, Model model) {
@@ -78,11 +86,17 @@ public class UsrArticleController {
 	}
 
 	@RequestMapping("/usr/article/list")
-	public String showList(HttpServletRequest req, Model model) {
+	public String showList(HttpServletRequest req, Model model, int boardId) {
 		Rq rq = (Rq) req.getAttribute("rq");
 
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId());
+		Board board = boardService.getBoardById(boardId);
 
+		if ( board == null ) {
+			return rq.historyBackJsOnView(Ut.f("%d번 게시판은 존재하지 않습니다.", boardId));
+		}
+		
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), boardId);
+		model.addAttribute("board", board);
 		model.addAttribute("articles", articles);
 
 		return "usr/article/list";
