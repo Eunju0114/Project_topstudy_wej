@@ -1,7 +1,5 @@
 package com.wej.exam.demo.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +15,11 @@ import com.wej.exam.demo.vo.Rq;
 public class UsrMemberController {
 
 	private MemberService memberService;
+	private Rq rq;
 
-	public UsrMemberController(MemberService memberService) {
+	public UsrMemberController(MemberService memberService, Rq rq) {
 		this.memberService = memberService;
+		this.rq = rq;
 	}
 
 	@RequestMapping("/usr/member/doJoin")
@@ -63,15 +63,14 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doLogout")
 	@ResponseBody
-	public String doLogout(HttpServletRequest req) {
-		Rq rq = (Rq)req.getAttribute("rq");
-		
+	public String doLogout() {
+
 		if (!rq.isLogined()) {
 			return rq.jsHistoryBack("이미 로그아웃 상태입니다.");
 		}
 
 		rq.logout();
-		
+
 		return rq.jsReplace("로그아웃 되었습니다.", "/");
 	}
 
@@ -82,9 +81,7 @@ public class UsrMemberController {
 
 	@RequestMapping("/usr/member/doLogin")
 	@ResponseBody
-	public String doLogin(HttpServletRequest req, String loginId, String loginPw) {
-		Rq rq = (Rq)req.getAttribute("rq");
-		
+	public String doLogin(String loginId, String loginPw) {
 		if (rq.isLogined()) {
 			return rq.jsHistoryBack("이미 로그인되었습니다.");
 		}
@@ -108,7 +105,7 @@ public class UsrMemberController {
 		}
 
 		rq.login(member);
-		
-		return  rq.jsReplace(Ut.f("%s님 환영합니다.", member.getNickname()), "/");
+
+		return rq.jsReplace(Ut.f("%s님 환영합니다.", member.getNickname()), "/");
 	}
 }
