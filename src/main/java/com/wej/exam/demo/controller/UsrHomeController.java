@@ -32,11 +32,12 @@ public class UsrHomeController {
 	@RequestMapping("/usr/home/main")
 	public String showMain(Model model, @RequestParam(defaultValue = "1") int page) {
 		
-		int itemsCountInAPage = 5;
+		int itemsCountInAPage = 2;
 		
 		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), 1, itemsCountInAPage, page);
 
 		
+		model.addAttribute("itemsCountInAPage", itemsCountInAPage);
 		model.addAttribute("articles", articles);
 
 		return "usr/home/main"; 

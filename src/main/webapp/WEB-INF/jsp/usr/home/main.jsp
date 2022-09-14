@@ -36,15 +36,15 @@
         </div>
         <div class="notice-box__body notice-box-1__body flex-grow">
           <div class="notice-list">
+
             <c:forEach var="article" items="${articles}">
               <ul class="h-full">
-                <c:if test="${num == 5}">
-                  <li>
-                    <a href="#">${article.title}</a>
-                  </li>
-                </c:if>
+                <li>
+                  <a href="#">${article.title}</a>
+                </li>
               </ul>
             </c:forEach>
+
           </div>
         </div>
       </div>
