@@ -7,7 +7,8 @@
 	<insert id="writeArticle">
 		insert into article
 		set regDate = now(),
-		updateDate = now(),
+		updateDate =
+		now(),
 		boardId = #{boardId},
 		memberId = #{memberId},
 		title = #{title},
@@ -46,6 +47,9 @@
 		</if>
 		order by
 		id DESC
+		<if test="limitStart != -1">
+			LIMIT #{limitStart}, #{limitTake}
+		</if>
 	</select>
 
 	<select id="getLastInsertId" resultType="int">

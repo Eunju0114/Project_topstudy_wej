@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wej.exam.demo.service.ArticleService;
 import com.wej.exam.demo.service.BoardService;
@@ -29,10 +30,11 @@ public class UsrHomeController {
 	}
 
 	@RequestMapping("/usr/home/main")
-	public String showMain(Model model) {
+	public String showMain(Model model, @RequestParam(defaultValue = "1") int page) {
 		
-
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), 1);
+		int itemsCountInAPage = 5;
+		
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), 1, itemsCountInAPage, page);
 
 		
 		model.addAttribute("articles", articles);
