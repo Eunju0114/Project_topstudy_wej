@@ -14,7 +14,7 @@ public interface ArticleRepository {
 	
 	public Article getForPrintArticle(@Param("id") int id);
 	
-	public List<Article> getForPrintArticles(@Param("boardId") int boardId, int limitStart, int limitTake);
+	public List<Article> getForPrintArticles(int boardId, int limitStart, int limitTake , String searchKeyword, String searchKeywordTypeCode);
 
 	public void deleteArticle(@Param("id") int id);
 	

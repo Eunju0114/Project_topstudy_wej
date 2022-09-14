@@ -36,7 +36,7 @@
       </a>
     </div>
 
-    <nav class="menu-1 self-center text-center font-bold text-lg">
+    <nav class="menu-1 self-center text-center font-bold text-lg  z-10">
       <ul class="flex">
         <li>
           <a href="#">학원안내</a>

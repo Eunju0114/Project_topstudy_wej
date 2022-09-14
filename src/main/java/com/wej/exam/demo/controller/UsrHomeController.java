@@ -34,11 +34,11 @@ public class UsrHomeController {
 		
 		int itemsCountInAPage = 2;
 		
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), 1, itemsCountInAPage, page);
+	//	List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), 1, itemsCountInAPage, page);
 
 		
 		model.addAttribute("itemsCountInAPage", itemsCountInAPage);
-		model.addAttribute("articles", articles);
+	//	model.addAttribute("articles", articles);
 
 		return "usr/home/main"; 
 	}
