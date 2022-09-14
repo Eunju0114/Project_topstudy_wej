@@ -10,7 +10,7 @@ import com.wej.exam.demo.vo.Article;
 @Mapper
 public interface ArticleRepository {
 
-	public void writeArticle(@Param("memberId") int memberID, @Param("title") String title,@Param("body") String body);
+	public void writeArticle(@Param("memberId") int memberID,@Param("boardId") int boardId,  @Param("title") String title,@Param("body") String body);
 	
 	public Article getForPrintArticle(@Param("id") int id);
 	
