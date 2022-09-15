@@ -3,9 +3,16 @@ package com.wej.exam.demo.utill;
 public class Ut {
 
 	public static boolean empty(Object obj) {
-
 		if (obj == null) {
 			return true;
+		}
+
+		if (obj instanceof Integer) {
+			return ((int) obj) == 0;
+		}
+
+		if (obj instanceof Long) {
+			return ((long) obj) == 0;
 		}
 
 		if (obj instanceof String == false) {
@@ -22,7 +29,7 @@ public class Ut {
 	}
 
 	public static String jsHistoryBack(String msg) {
-		return  Ut.f("""
+		return Ut.f("""
 				<script>
 				const msg = '%s'.trim();
 				if ( msg.length > 0 ) {
@@ -30,7 +37,7 @@ public class Ut {
 				}
 				history.back();
 				</script>
-				""",msg);
+				""", msg);
 	}
 
 	public static String jsReplace(String msg, String uri) {

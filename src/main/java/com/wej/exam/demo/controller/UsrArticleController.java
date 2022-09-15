@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wej.exam.demo.service.ArticleService;
 import com.wej.exam.demo.service.BoardService;
+import com.wej.exam.demo.service.ReplyService;
 import com.wej.exam.demo.utill.Ut;
 import com.wej.exam.demo.vo.Article;
 import com.wej.exam.demo.vo.Board;
+import com.wej.exam.demo.vo.Reply;
 import com.wej.exam.demo.vo.ResultData;
 import com.wej.exam.demo.vo.Rq;
 
@@ -24,10 +26,12 @@ public class UsrArticleController {
 	private ArticleService articleService;
 	private BoardService boardService;
 	private Rq rq;
+	private ReplyService replyService;
 
-	public UsrArticleController(ArticleService articleService, BoardService boardService, Rq rq) {
+	public UsrArticleController(ArticleService articleService, BoardService boardService, ReplyService replyService, Rq rq) {
 		this.articleService = articleService;
 		this.boardService = boardService;
+		this.replyService = replyService;
 		this.rq = rq;
 	}
 
@@ -60,9 +64,14 @@ public class UsrArticleController {
 
 	@RequestMapping("/usr/article/detail")
 	public String showDetail(Model model, int id) {
+
 		Article article = articleService.getForPrintArticle(rq.getLoginedMemberId(), id);
 
 		model.addAttribute("article", article);
+
+		List<Reply> replies = replyService.getForPrintReplies(rq.getLoginedMemberId(), "article", id);
+		int repliesCount = replies.size();
+		model.addAttribute("repliesCount", repliesCount);
 
 		return "usr/article/detail";
 	}
@@ -94,8 +103,8 @@ public class UsrArticleController {
 		int itemsCountInAPage = 10;
 
 		int pagesCount = (int) Math.ceil((double) articlesCount / itemsCountInAPage);
-		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), boardId, searchKeyword, searchKeywordTypeCode,  itemsCountInAPage,
-				page);
+		List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), boardId, searchKeyword,
+				searchKeywordTypeCode, itemsCountInAPage, page);
 
 		model.addAttribute("boardId", boardId);
 		model.addAttribute("board", board);
