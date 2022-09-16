@@ -181,7 +181,7 @@ img, viedo{
 
 .notice-box__head > ul > li:hover > a {
   text-decoration: underline;
-  color: #999;
+  color: red;
 }
 
 .notice-box__body {
@@ -208,11 +208,12 @@ img, viedo{
 
 .notice-list > ul > li:hover > a {
   text-decoration: underline;
-  color: #999;
+  color: red;
 }
 
 .notice-list > ul > li > a::before {
   content:"• ";
+  margin-right:10px;
 }
 
 .notice-list > ul > li > a > span:first-child {

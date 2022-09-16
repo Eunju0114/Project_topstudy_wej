@@ -16,33 +16,31 @@ import com.wej.exam.demo.vo.Rq;
 
 @Controller
 public class UsrHomeController {
-	
+
 	@Autowired
 	private ArticleService articleService;
 	private BoardService boardService;
 	private Rq rq;
-	
+
 	public UsrHomeController(ArticleService articleService, BoardService boardService, Rq rq) {
 		this.articleService = articleService;
 		this.boardService = boardService;
 		this.rq = rq;
-		
+
 	}
 
 	@RequestMapping("/usr/home/main")
-	public String showMain(Model model, @RequestParam(defaultValue = "1") int page) {
-		
-		int itemsCountInAPage = 2;
-		
-	//	List<Article> articles = articleService.getForPrintArticles(rq.getLoginedMemberId(), 1, itemsCountInAPage, page);
+	public String showMain(Model model) {
 
-		
-		model.addAttribute("itemsCountInAPage", itemsCountInAPage);
-	//	model.addAttribute("articles", articles);
+		List<Article> articles1 = articleService.getForArticleTitleBoardId1();
+		List<Article> articles2 = articleService.getForArticleTitleBoardId2();
 
-		return "usr/home/main"; 
+		model.addAttribute("articles1", articles1);
+		model.addAttribute("articles2", articles2);
+
+		return "usr/home/main";
 	}
-	
+
 	@RequestMapping("/")
 	public String showRoot() {
 		return "redirect:/usr/home/main";

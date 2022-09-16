@@ -30,21 +30,20 @@
         <div class="notice-box__head notice-box-1__head flex-shrink-0 flex">
           <ul>
             <li>
-              <a href="#" class="block p-5">공지사항</a>
+              <a href="#" class="block p-5 font-bold">공지사항</a>
             </li>
           </ul>
         </div>
         <div class="notice-box__body notice-box-1__body flex-grow">
-          <div class="notice-list">
+          <div class="notice-list flex flex-col">
 
-            <c:forEach var="article" items="${articles}">
+            <c:forEach var="article" items="${articles1}" end="4">
               <ul class="h-full">
                 <li>
-                  <a href="#">${article.title}</a>
+                  <a href="../article/detail?id=${article.id}">${article.title}</a>
                 </li>
               </ul>
             </c:forEach>
-
           </div>
         </div>
       </div>
@@ -54,26 +53,19 @@
         <div class="notice-box__head notice-box-2__head flex-shrink-0 flex">
           <ul>
             <li>
-              <a href="#" class="block p-5">게시판</a>
+              <a href="#" class="block p-5 font-bold">자유 게시판</a>
             </li>
           </ul>
         </div>
         <div class="notice-box__body notice-box-2__body flex-grow">
-          <div class="notice-list">
-            <ul class="h-full">
-              <li>
-                <a href="#">게시판1</a>
-              </li>
-              <li>
-                <a href="#">게시판2</a>
-              </li>
-              <li>
-                <a href="#">게시판3</a>
-              </li>
-              <li>
-                <a href="#">게시판4</a>
-              </li>
-            </ul>
+          <div class="notice-list flex flex-col">
+           <c:forEach var="article" items="${articles2}" end="4">
+              <ul class="h-full">
+                <li>
+                  <a href="../article/detail?id=${article.id}">${article.title}</a>
+                </li>
+              </ul>
+            </c:forEach>
           </div>
         </div>
       </div>

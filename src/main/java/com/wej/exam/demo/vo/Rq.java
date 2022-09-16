@@ -1,6 +1,7 @@
 package com.wej.exam.demo.vo;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,10 +31,13 @@ public class Rq {
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
 	private HttpSession session;
+	private Map<String, String> paramMap;
 
 	public Rq(HttpServletRequest req, HttpServletResponse resp, MemberService memberService) {
 		this.req = req;
 		this.resp = resp;
+
+		paramMap = Ut.getParamMap(req);
 
 		this.session = req.getSession();
 
@@ -66,7 +70,7 @@ public class Rq {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean isNotLogined() {
 		return !isLogined;
 	}
@@ -102,6 +106,62 @@ public class Rq {
 	// 편의를 위해 BeforeActionInterceptor 에서 꼭 호출을 해야한다.
 	public void initOnBeforeActionInterceptor() {
 
+	}
+
+	public String historyBackJsOnView(String resultCode, String msg) {
+		req.setAttribute("msg", String.format("[%s] %s", resultCode, msg));
+		req.setAttribute("historyBack", true);
+		return "common/js";
+	}
+
+	public String jsHistoryBack(String resultCode, String msg) {
+		msg = String.format("[%s] %s", resultCode, msg);
+		return Ut.jsHistoryBack(msg);
+	}
+
+	public String getJoinUri() {
+		return "../member/join?afterLogoutUri=" + getAfterLogoutUri();
+	}
+
+	private String getAfterLogoutUri() {
+		String requestUri = req.getRequestURI();
+
+		// 필요하다면 활성화
+		/*
+		 * switch (requestUri) { case "/usr/article/write": return ""; }
+		 */
+
+		return getEncodedCurrentUri();
+	}
+
+	public String getAfterLoginUri() {
+		String requestUri = req.getRequestURI();
+
+		// 로그인 후 돌아가면 안되는 페이지 URL 들을 적으시면 됩니다.
+		switch (requestUri) {
+		case "/usr/member/login":
+		case "/usr/member/join":
+		case "/usr/member/findLoginId":
+		case "/usr/member/findLoginPw":
+			return Ut.getUriEncoded(Ut.getStrAttr(paramMap, "afterLoginUri", ""));
+		}
+
+		return getEncodedCurrentUri();
+	}
+
+	public String getEncodedCurrentUri() {
+		return Ut.getUriEncoded(getCurrentUri());
+	}
+
+	public String getCurrentUri() {
+		String currentUri = req.getRequestURI();
+		String queryString = req.getQueryString();
+
+		if (queryString != null && queryString.length() > 0) {
+			currentUri += "?" + queryString;
+		}
+
+		return currentUri;
 	}
 
 }

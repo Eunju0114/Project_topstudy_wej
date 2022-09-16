@@ -25,6 +25,29 @@
 		AND A.id = #{id}
 	</select>
 
+	<select id="getForArticleTitleBoardId1" resultType="Article">
+		select id, title
+		from article
+		where boardId = 1
+		order by
+		id DESC;
+	</select>
+	
+	<select id="getForArticleTitleBoardId2" resultType="Article">
+		select id, title
+		from article
+		where boardId = 2
+		order by
+		id DESC;
+	</select>
+	
+	
+	<select id="getArticle" resultType="Article">
+		select *
+		from article
+		where id = #{id}
+	</select>
+
 	<select id="getArticlesCount" resultType="int">
 		SELECT COUNT(*) AS cnt
 		FROM article AS A

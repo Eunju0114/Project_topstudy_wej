@@ -3,9 +3,30 @@
 <c:set var="pageTitle" value="게시물 수정" />
 <%@ include file="../common/head.jspf"%>
 
+
+<script>
+	let ArticleModify__submitDone = false;
+	function ArticleModify__submitDone(form) {
+		if (ArticleModify__submitDone) {
+			alert('처리중입니다.');
+			return;
+		}
+		// 좌우공백 제거
+		form.body.value = form.body.value.trim();
+		if (form.body.value.length == 0) {
+			alert('내용을 입력해주세요.');
+			form.body.focus();
+			return;
+		}
+		ArticleModify__submitDone = true;
+		form.submit();
+	}
+</script>
+
+
 <section class="mt-2">
   <div class="con px-3">
-    <form class="table-box-type-1" method="POST" action="../article/doModify">
+    <form class="table-box-type-1" method="POST" action="../article/doModify" onsubmit="ArticleModify__submitDone">
       <input type="hidden" name="id" value="${article.id}" />
       <table>
         <colgroup>
@@ -15,20 +36,16 @@
           <tr>
             <th>번호</th>
             <td>
-              <div class="badge badge-primary">${article.id}</div>              
+              <div class="badge badge-primary">${article.id}</div>
             </td>
           </tr>
           <tr>
             <th>작성날짜</th>
-            <td>
-              ${article.regDateForPrint}
-            </td>
+            <td>${article.regDateForPrint}</td>
           </tr>
           <tr>
             <th>수정날짜</th>
-            <td>
-              ${article.updateDateForPrint}
-            </td>
+            <td>${article.updateDateForPrint}</td>
           </tr>
           <tr>
             <th>작성자</th>
@@ -37,7 +54,8 @@
           <tr>
             <th>제목</th>
             <td>
-              <input class="w-96 input input-bordered w-full max-w-xs" name="title" type="text" palceholder="제목" value="${article.title}" />
+              <input class="w-96 input input-bordered w-full max-w-xs" name="title" type="text" palceholder="제목"
+                value="${article.title}" />
             </td>
           </tr>
           <tr>

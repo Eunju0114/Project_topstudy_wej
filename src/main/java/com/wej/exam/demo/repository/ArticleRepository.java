@@ -24,4 +24,10 @@ public interface ArticleRepository {
 
 	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword);
 
+	public Article getArticle(int id);
+
+	public List<Article> getForArticleTitleBoardId1();
+	
+	public List<Article> getForArticleTitleBoardId2();
+
 }

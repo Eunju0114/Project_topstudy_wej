@@ -100,4 +100,18 @@ public class ArticleService {
 	public int getArticlesCount(int boardId, String searchKeywordTypeCode, String searchKeyword) {
 		return articleRepository.getArticlesCount(boardId, searchKeywordTypeCode, searchKeyword);
 	}
+
+	public Article getArticle(int id) {
+		return articleRepository.getArticle(id);
+	}
+
+	public List<Article> getForArticleTitleBoardId1() {
+
+		return articleRepository.getForArticleTitleBoardId1();
+	}
+
+	public List<Article> getForArticleTitleBoardId2() {
+
+		return articleRepository.getForArticleTitleBoardId2();
+	}
 }

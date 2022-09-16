@@ -109,7 +109,7 @@
           </c:if>
           <ul>
             <li>
-              <a href="#">회원가입</a>
+              <a href ="${rq.joinUri}" class="h-full flex items-center px-3 hover:underline">회원가입</a>
             </li>
             <li>
               <a href="#">아이디 찾기</a>
